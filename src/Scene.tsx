@@ -85,11 +85,11 @@ export default function Scene({ text, color }: SceneProps) {
           blur={[400, 100]}
           resolution={1024}
           mixBlur={0.8}
-          mixStrength={10} 
+          mixStrength={5} 
           roughness={1}
-          depthScale={1}
-          minDepthThreshold={0.5}
-          maxDepthThreshold={1.2}
+          depthScale={0.5}
+          minDepthThreshold={0.6}
+          maxDepthThreshold={1}
           metalness={0.6}
           mirror={1}
         />
