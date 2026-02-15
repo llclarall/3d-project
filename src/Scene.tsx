@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Text, Float } from '@react-three/drei'
+import { Text, Float, MeshReflectorMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 interface SceneProps {
@@ -49,13 +49,29 @@ export default function Scene({ text, color }: SceneProps) {
           textAlign="center"
           anchorX="center"
           anchorY="middle"
-          outlineWidth={0.03}
-          outlineColor="#000000"
           font='BebasNeue-Regular.ttf'
         >
           {text || 'HELLO'}
         </Text>
       </Float>
+
+      {/* Lac miroir liquide noir sous le texte */}
+      <mesh position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[30, 30]} />
+        <MeshReflectorMaterial
+          blur={[500, 200]}
+          resolution={1024}
+          mixBlur={2}
+          mixStrength={60}
+          roughness={0.3}
+          depthScale={1.5}
+          minDepthThreshold={0.3}
+          maxDepthThreshold={1.5}
+          color="#000000"
+          metalness={0.8}
+          mirror={0.7}
+        />
+      </mesh>
     </>
   )
 }
