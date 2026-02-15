@@ -5,7 +5,7 @@ import './App.css'
 
 
 function App() {
-  const [inputText, setInputText] = useState('hello')
+  const [inputText, setInputText] = useState('MMI 3')
   const [textColor, setTextColor] = useState('#ff0055')
 
   return (
