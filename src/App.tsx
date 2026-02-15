@@ -13,6 +13,7 @@ function App() {
       {/* Scène 3D (R3F) */}
       <Canvas
         shadows
+        gl={{ antialias: true, preserveDrawingBuffer: true }}
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 2]}
         style={{ pointerEvents: 'none', position: 'fixed', top: 0, left: 0, zIndex: 1 }}
