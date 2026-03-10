@@ -44,7 +44,7 @@ export default function Scene({ text, color }: SceneProps) {
 
   return (
     <>
-      <ambientLight intensity={0.2} />
+      <ambientLight intensity={0.8} />
       <pointLight position={[10, 10, 10]} intensity={0.8} color="#ffffff" />
       <pointLight position={[-10, -10, -5]} intensity={0.5} color="#4466ff" />
       
@@ -61,21 +61,34 @@ export default function Scene({ text, color }: SceneProps) {
       />
 
       <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.4}>
-        <Text
-          ref={textRef}
-          position={[0, 0, 0]}
-          fontSize={1.5}
-          color={color || '#ff0055'}
-          maxWidth={10}
-          lineHeight={1}
-          letterSpacing={0.05}
-          textAlign="center"
-          anchorX="center"
-          anchorY="middle"
-          font='BebasNeue-Regular.ttf'
-        >
-          {text || 'HELLO'}
-        </Text>
+        <group ref={textRef}>
+          {/* Couches de profondeur 3D */}
+          {[...Array(8)].map((_, i) => (
+            <Text
+              key={i}
+              position={[0, 0, -i * 0.05]}
+              fontSize={1.5}
+              maxWidth={10}
+              lineHeight={1}
+              letterSpacing={0.05}
+              textAlign="center"
+              anchorX="center"
+              anchorY="middle"
+              font='BebasNeue-Regular.ttf'
+            >
+              {text || 'HELLO'}
+              <meshStandardMaterial 
+                color={i === 0 ? (color || '#ff0055') : 
+                      i < 4 ? new THREE.Color(color || '#ff0055').multiplyScalar(0.8 - i * 0.1).getStyle() :
+                      new THREE.Color(color || '#ff0055').multiplyScalar(0.4).getStyle()}
+                emissive={i === 0 ? (color || '#ff0055') : new THREE.Color(color || '#ff0055').multiplyScalar(0.3)}
+                emissiveIntensity={i === 0 ? 0.5 : 0.2}
+                metalness={0.2} 
+                roughness={0.3}
+              />
+            </Text>
+          ))}
+        </group>
       </Float>
 
       {/* Lac miroir liquide noir sous le texte */}
