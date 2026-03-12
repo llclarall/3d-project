@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="container">
-      {/* Scène 3D (R3F) */}
+      {/* Scène 3D */}
       <Canvas
         shadows
         gl={{ antialias: true, preserveDrawingBuffer: true }}
@@ -18,13 +18,13 @@ function App() {
         dpr={[1, 2]}
         style={{ pointerEvents: 'none', position: 'fixed', top: 0, left: 0, zIndex: 1 }}
       >
-        <color attach="background" args={['#0a0a0a']} />
+        <color attach="background" args={['#2c2828']} />
         <Scene text={inputText} color={textColor} />
       </Canvas>
 
-      {/* Interface UI (HTML) */}
+      {/* Interface UI */}
       <div className="ui-panel">
-        <h1>✨ Typo 3D Explorer</h1>
+        <h1>✨ Typo 3D</h1>
         
         <div className="input-group">
           <label>Texte</label>
